@@ -246,6 +246,7 @@ public class Main {
 	private JLabel lblGastos_1;
 	private JLabel lblUp;
 	private JLabel lblDown;
+	private JButton btnTest;
 	
 	
 	
@@ -408,6 +409,10 @@ public class Main {
 		separator.setForeground(SystemColor.windowBorder);
 		separator.setBounds(122, 162, 1, 35);
 		sidebar.add(separator);
+		
+		btnTest = new JButton("TEST");
+		btnTest.setBounds(61, 495, 89, 23);
+		sidebar.add(btnTest);
 		
 		MiListener oyenteCrearPres = new MiListener();
 		MiListener oyentePresAuto = new MiListener();
