@@ -341,7 +341,7 @@ public class Main {
 		sidebar.add(btnSalir);		
 		
 		try {
-			myPicture = ImageIO.read(new File("src/user.png"));
+			myPicture = ImageIO.read(new File("user.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -381,7 +381,7 @@ public class Main {
 		sidebar.add(lblGastos_1);
 		
 		try {
-			imageUp = ImageIO.read(new File("src/up.png"));
+			imageUp = ImageIO.read(new File("up.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -392,7 +392,7 @@ public class Main {
 		sidebar.add(lblUp);
 		
 		try {
-			imageDown = ImageIO.read(new File("src/down.png"));
+			imageDown = ImageIO.read(new File("down.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
