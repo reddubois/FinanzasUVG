@@ -1,32 +1,31 @@
 
-//
-/// COMENTARIO
-///
-/*
-/*
- * @author Javier Barrios 
- * @doc Interfaz Resumne
- * 
- */
-public
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.SystemColor;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.NumberFormat;
 
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+import javax.swing.Icon;
+import javax.swing.JSeparator;
 
 public class Main {
 
@@ -48,7 +47,21 @@ public class Main {
 				fieldTotalRopa, fieldTotalRegalos, fieldTotalViajes;
 
 	private int ingresosTotal = 7000;
-	private JPanel resumenMain;
+
+
+
+	private JLabel label_37;
+
+	private JLabel picLabel;
+	private BufferedImage myPicture = null, imageUp = null, imageDown = null;
+	private JLabel lblUsername;
+	private JLabel lblIngresos;
+	private JLabel lblQ_1;
+	private JLabel lblQ_2;
+	private JLabel lblGastos_1;
+	private JLabel lblUp;
+	private JLabel lblDown;
+	private JButton btnTest;
 	
 	
 	
@@ -80,9 +93,12 @@ public class Main {
 	 */
 	private void initialize() {
 		ventana = new JFrame();
+		ventana.setTitle("UVG Finanzas");
 		ventana.getContentPane().setBackground(Color.WHITE);
 		ventana.setBackground(Color.WHITE);
-		ventana.setBounds(50, 15, 1280, 740);
+		ventana.setSize(1280, 740);
+		ventana.setLocationRelativeTo(null);
+		
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.getContentPane().setLayout(null);
 		
@@ -96,6 +112,7 @@ public class Main {
 		MiListener oyenteResumen = new MiListener();
 		btnResumen.addActionListener(oyenteResumen);
 		btnResumen.setFont(new Font("Verdana", Font.PLAIN, 14));
+
 		btnResumen.setForeground(Color.WHITE);
 		btnResumen.setBackground(new Color(51, 153, 255));
 		btnResumen.setBounds(0, 169, 239, 47);
@@ -108,7 +125,7 @@ public class Main {
 		btnIngresos.setForeground(SystemColor.controlDkShadow);
 		btnIngresos.setFont(new Font("Verdana", Font.PLAIN, 14));
 		btnIngresos.setBackground(SystemColor.controlHighlight);
-		btnIngresos.setBounds(0, 213, 239, 47);
+		btnIngresos.setBounds(0, 273, 239, 47);
 		btnIngresos.setBorder(null);
 		sidebar.add(btnIngresos);
 		
@@ -118,8 +135,9 @@ public class Main {
 		btnGastos.setBackground(SystemColor.controlHighlight);
 		btnGastos.setForeground(SystemColor.controlDkShadow);
 		btnGastos.setFont(new Font("Verdana", Font.PLAIN, 14));
-		
-		btnGastos.setBounds(0, 258, 239, 47);
+
+		btnGastos.setBackground(SystemColor.controlHighlight);
+		btnGastos.setBounds(0, 318, 239, 47);
 		btnGastos.setBorder(null);
 		sidebar.add(btnGastos);
 		
@@ -127,9 +145,10 @@ public class Main {
 		MiListener oyentePrespuesto = new MiListener();
 		btnPresupuestos.addActionListener(oyentePrespuesto);
 		btnPresupuestos.setFont(new Font("Verdana", Font.PLAIN, 14));
-		btnPresupuestos.setBackground(SystemColor.controlHighlight);
-		btnPresupuestos.setForeground(SystemColor.controlDkShadow);
-		btnPresupuestos.setBounds(0, 304, 239, 47);
+
+		btnPresupuestos.setForeground(Color.WHITE);
+		btnPresupuestos.setBackground(new Color(51, 153, 255));
+		btnPresupuestos.setBounds(0, 364, 239, 47);
 		btnPresupuestos.setBorder(null);
 		sidebar.add(btnPresupuestos);
 		
@@ -137,9 +156,83 @@ public class Main {
 		btnSalir.setBackground(SystemColor.controlHighlight);
 		btnSalir.setForeground(SystemColor.controlDkShadow);
 		btnSalir.setFont(new Font("Verdana", Font.PLAIN, 14));
-		btnSalir.setBounds(0, 350, 239, 47);
+		btnSalir.setBounds(0, 410, 239, 47);
 		btnSalir.setBorder(null);
-		sidebar.add(btnSalir);
+		sidebar.add(btnSalir);		
+		
+		try {
+			myPicture = ImageIO.read(new File("user.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Image newImage = myPicture.getScaledInstance(75, 75, Image.SCALE_DEFAULT);
+		picLabel = new JLabel(new ImageIcon(newImage));
+		
+		picLabel.setLocation(0, 21);
+		picLabel.setSize(239, 100);
+		sidebar.add(picLabel);
+		
+		lblUsername = new JLabel("Username");
+		lblUsername.setForeground(new Color(51,51,51));
+		lblUsername.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsername.setBounds(0, 111, 239, 35);
+		sidebar.add(lblUsername);
+		
+		lblIngresos = new JLabel("Ingresos");
+		lblIngresos.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+		lblIngresos.setBounds(50, 162, 60, 15);
+		sidebar.add(lblIngresos);
+		
+		lblQ_1 = new JLabel("Q 7,000");
+		lblQ_1.setFont(new Font("Segoe UI Black", Font.BOLD, 13));
+		lblQ_1.setBounds(50, 181, 60, 15);
+		sidebar.add(lblQ_1);
+		
+		lblQ_2 = new JLabel("Q 2,340");
+		lblQ_2.setFont(new Font("Segoe UI Black", Font.BOLD, 13));
+		lblQ_2.setBounds(165, 181, 60, 15);
+		sidebar.add(lblQ_2);
+		
+		lblGastos_1 = new JLabel("Gastos");
+		lblGastos_1.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+		lblGastos_1.setBounds(165, 162, 60, 15);
+		sidebar.add(lblGastos_1);
+		
+		try {
+			imageUp = ImageIO.read(new File("up.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Image imgUp = imageUp.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+		lblUp = new JLabel(new ImageIcon(imgUp));
+		lblUp.setBounds(15, 162, 30, 35);
+		sidebar.add(lblUp);
+		
+		try {
+			imageDown = ImageIO.read(new File("down.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Image imgDown = imageDown.getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+		lblDown = new JLabel(new ImageIcon(imgDown));
+		lblDown.setBounds(130, 162, 30, 35);
+		sidebar.add(lblDown);
+		
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setBackground(SystemColor.windowBorder);
+		separator.setForeground(SystemColor.windowBorder);
+		separator.setBounds(122, 162, 1, 35);
+		sidebar.add(separator);
+		
+		btnTest = new JButton("TEST");
+		btnTest.setBounds(61, 495, 89, 23);
+		sidebar.add(btnTest);
+		
 		MiListener oyenteCrearPres = new MiListener();
 		MiListener oyentePresAuto = new MiListener();
 		MiListener oyentePresHogar = new MiListener();
@@ -171,10 +264,80 @@ public class Main {
 		ventana.getContentPane().add(content);
 		content.setLayout(new CardLayout(0, 0));
 		
-		resumen = new JPanel();
-		resumen.setBackground(Color.WHITE);
-		content.add(resumen, "name_18739609784760");
-		resumen.setLayout(new CardLayout(0, 0));
+		presupuestos = new JPanel();
+		presupuestos.setBackground(Color.WHITE);
+		content.add(presupuestos);
+		presupuestos.setLayout(new CardLayout(0, 0));
+		
+		presupuestoMain = new JPanel();
+		presupuestoMain.setBackground(new Color(255, 255, 255));
+		presupuestos.add(presupuestoMain);
+		presupuestoMain.setLayout(null);
+		
+		label_4 = new JLabel("PRESUPUESTOS");
+		label_4.setFont(new Font("Verdana", Font.PLAIN, 20));
+		label_4.setBounds(423, 60, 170, 64);
+		presupuestoMain.add(label_4);
+		
+		lblPresupuestoTotal_1 = new JLabel("Presupuesto total:");
+		lblPresupuestoTotal_1.setFont(new Font("Verdana", Font.PLAIN, 17));
+		lblPresupuestoTotal_1.setBounds(113, 149, 158, 19);
+		presupuestoMain.add(lblPresupuestoTotal_1);
+		
+		label_6 = new JLabel("Total Ingresos:");
+		label_6.setFont(new Font("Verdana", Font.PLAIN, 17));
+		label_6.setBounds(679, 149, 133, 19);
+		presupuestoMain.add(label_6);
+		
+		progressBar = new JProgressBar();
+		
+		progressBar.setStringPainted(true);
+		progressBar.setForeground(new Color(50, 205, 50));
+		progressBar.setBackground(Color.WHITE);
+		progressBar.setBounds(113, 174, 800, 27);
+		presupuestoMain.add(progressBar);
+		
+		btnCrearPres = new JButton("+");
+		btnCrearPres.addActionListener(oyenteCrearPres);
+		btnCrearPres.setForeground(Color.WHITE);
+		btnCrearPres.setBackground(new Color(51, 153, 255));
+		btnCrearPres.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnCrearPres.setBounds(450, 246, 133, 50);
+		btnCrearPres.setBorder(null);
+		presupuestoMain.add(btnCrearPres);
+		
+		label_7 = new JLabel("Crear presupuesto");
+		label_7.setFont(new Font("Verdana", Font.PLAIN, 14));
+		label_7.setBounds(450, 296, 133, 27);
+		presupuestoMain.add(label_7);
+		
+		panel_82 = new JPanel();
+		panel_82.setBackground(new Color(240, 240, 240));
+		panel_82.setBounds(113, 399, 365, 33);
+		presupuestoMain.add(panel_82);
+		panel_82.setLayout(null);
+		
+		presMainLabel1 = new JLabel("");
+		presMainLabel1.setBackground(new Color(0, 153, 255));
+		presMainLabel1.setForeground(new Color(255, 255, 255));
+		presMainLabel1.setFont(new Font("Verdana", Font.BOLD, 13));
+		presMainLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
+		presMainLabel1.setBounds(0, 0, 181, 33);
+		panel_82.add(presMainLabel1);
+		
+		presMainLabel2 = new JLabel("");
+		presMainLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+		presMainLabel2.setForeground(Color.WHITE);
+		presMainLabel2.setFont(new Font("Verdana", Font.BOLD, 15));
+		presMainLabel2.setBackground(new Color(0, 153, 255));
+		presMainLabel2.setBounds(184, 0, 181, 33);
+		panel_82.add(presMainLabel2);
+		
+		panel = new JPanel();
+		panel.setBackground(new Color(240, 240, 240));
+		panel.setBounds(548, 399, 365, 33);
+		presupuestoMain.add(panel);
+		panel.setLayout(null);
 		
 		resumenMain = new JPanel();
 		resumenMain.setBackground(Color.WHITE);
