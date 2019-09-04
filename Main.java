@@ -27,6 +27,8 @@ import javax.swing.SwingConstants;
 import javax.swing.Icon;
 import javax.swing.JSeparator;
 
+import javax.swing.JComboBox;
+
 public class Main {
 
 	private JFrame ventana;
@@ -87,7 +89,7 @@ public class Main {
 	private JPanel panel, panel_10, panel_11, panel_12, panel_13, panel_14;
 	
 	private JLabel label_4, label_5, label_38, lblPresupuestoTotal_1, label_6, label_7, lblNewLabel_1, lblSeleccioneUnaCategoria, lblDespensa, lblRestaurante,
-	lblOtros, lblSubcategoras, label_8, label_3, lblGastos, lblNewLabel, lblTransportePublico, lblGasolina, lblUbertaxi, label_14, lblHogar;
+	lblOtros, lblSubcategoras, label_8, label_3, lblGastos, lblTransportePublico, lblGasolina, lblUbertaxi, label_14, lblHogar;
 	
 	private JProgressBar progressBar;
 	private JButton btnCrearPres;
@@ -122,6 +124,25 @@ public class Main {
 	resumen9, resumen14, resumen13;
 
 	private JLabel resumenIngresos, resumenGastos, lblTotalIngresos, lblGastosTotal, res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11;
+
+	private JPanel pIngresosMain;
+	private JPanel pIngresos2;
+	
+	private JPanel pIngSueldos, pIngBonos, pIngReembolsos, pIngRentas, pIngSubsidios, pIngInversiones, pIngOtros;
+	private JLabel lblNombreSueldos, lblNombreBonos, lblNombreReembolsos, lblNombreRentas, lblNombreSubsidios,
+				   lblNombreInversiones, lblNombreOtros;
+	private JLabel lblSueldos, lblBonos, lblReembolsos, lblRentas, lblSubsidios, lblInversiones, lblOtros1;
+
+	private JLabel lblEditar;
+	private JLabel lblIngresosEdita;
+	private JPanel panel_19;
+	private JLabel lblNewLabel_4;
+	private JLabel lblDe;
+	private JLabel lblNewLabel_5;
+	private JTextField tfIngresoMonto;
+	private JComboBox<String> cbIngresoRep, cbIngresoCat, cbIngresoRec;
+	private MiListener oyenteIngresos;
+	private JButton btnIngresoRegresar, btnIngresoGuardar, btnAgregarIngreso;
 	
 	
 	
@@ -2806,13 +2827,250 @@ public class Main {
 		ingresos = new JPanel();
 		ingresos.setBackground(Color.WHITE);
 		content.add(ingresos, "name_18777845815723");
-		ingresos.setLayout(null);
+		ingresos.setLayout(new CardLayout(0, 0));
 		
-		lblNewLabel = new JLabel("INGRESOS");
-		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblNewLabel.setBounds(86, 149, 282, 169);
-		ingresos.add(lblNewLabel);
+		pIngresosMain = new JPanel();
+		pIngresosMain.setBackground(Color.WHITE);
+		ingresos.add(pIngresosMain, "name_163373685705900");
+		pIngresosMain.setLayout(null);
+		
+		JLabel lblIngresoTitulo = new JLabel("Ingresos");
+		lblIngresoTitulo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblIngresoTitulo.setBounds(452, 42, 130, 42);
+		pIngresosMain.add(lblIngresoTitulo);
+		
+		JLabel lblNewLabel = new JLabel("8000");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblNewLabel.setBounds(452, 115, 130, 42);
+		pIngresosMain.add(lblNewLabel);
+		
+		JLabel lblNewLabel_2 = new JLabel("Total ingresos:     Q");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblNewLabel_2.setBounds(222, 125, 219, 23);
+		pIngresosMain.add(lblNewLabel_2);
+		
+		oyenteIngresos = new MiListener();
+		btnAgregarIngreso = new JButton("+");
+		btnAgregarIngreso.addActionListener(oyenteIngresos);
+		btnAgregarIngreso.setBounds(452, 199, 130, 65);
+		pIngresosMain.add(btnAgregarIngreso);
+		
+		JLabel lblAgregaringresoo = new JLabel("Agregar un nuevo ingreso");
+		lblAgregaringresoo.setBounds(452, 275, 130, 23);
+		pIngresosMain.add(lblAgregaringresoo);
+		
+		pIngSueldos = new JPanel();
+		pIngSueldos.setBounds(117, 330, 392, 36);
+		pIngresosMain.add(pIngSueldos);
+		pIngSueldos.setLayout(null);
+		
+		lblNombreSueldos = new JLabel("");
+		lblNombreSueldos.setForeground(Color.WHITE);
+		lblNombreSueldos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombreSueldos.setBounds(0, 0, 187, 36);
+		pIngSueldos.add(lblNombreSueldos);
+		
+		lblSueldos = new JLabel("");
+		lblSueldos.setForeground(Color.WHITE);
+		lblSueldos.setBounds(197, 0, 195, 36);
+		pIngSueldos.add(lblSueldos);
+		
+		pIngReembolsos = new JPanel();
+		pIngReembolsos.setBounds(117, 391, 392, 36);
+		pIngresosMain.add(pIngReembolsos);
+		pIngReembolsos.setLayout(null);
+		
+		lblNombreReembolsos = new JLabel("");
+		lblNombreReembolsos.setForeground(Color.WHITE);
+		lblNombreReembolsos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombreReembolsos.setBounds(0, 0, 187, 36);
+		pIngReembolsos.add(lblNombreReembolsos);
+		
+		lblReembolsos = new JLabel("");
+		lblReembolsos.setForeground(Color.WHITE);
+		lblReembolsos.setBounds(197, 0, 195, 36);
+		pIngReembolsos.add(lblReembolsos);
+		
+		pIngSubsidios = new JPanel();
+		pIngSubsidios.setBounds(117, 455, 392, 36);
+		pIngresosMain.add(pIngSubsidios);
+		pIngSubsidios.setLayout(null);
+		
+		lblNombreSubsidios = new JLabel("");
+		lblNombreSubsidios.setForeground(Color.WHITE);
+		lblNombreSubsidios.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombreSubsidios.setBounds(0, 0, 183, 36);
+		pIngSubsidios.add(lblNombreSubsidios);
+		
+		lblSubsidios = new JLabel("");
+		lblSubsidios.setForeground(Color.WHITE);
+		lblSubsidios.setBounds(193, 0, 199, 36);
+		pIngSubsidios.add(lblSubsidios);
+		
+		pIngOtros = new JPanel();
+		pIngOtros.setBounds(117, 519, 392, 36);
+		pIngresosMain.add(pIngOtros);
+		pIngOtros.setLayout(null);
+		
+		lblNombreOtros = new JLabel("");
+		lblNombreOtros.setForeground(Color.WHITE);
+		lblNombreOtros.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombreOtros.setBounds(0, 0, 183, 36);
+		pIngOtros.add(lblNombreOtros);
+		
+		lblOtros1 = new JLabel("");
+		lblOtros1.setForeground(Color.WHITE);
+		lblOtros1.setBounds(193, 0, 199, 36);
+		pIngOtros.add(lblOtros1);
+		
+		pIngBonos = new JPanel();
+		pIngBonos.setBounds(541, 330, 392, 36);
+		pIngresosMain.add(pIngBonos);
+		pIngBonos.setLayout(null);
+		
+		lblNombreBonos = new JLabel("");
+		lblNombreBonos.setForeground(Color.WHITE);
+		lblNombreBonos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombreBonos.setBounds(0, 0, 183, 36);
+		pIngBonos.add(lblNombreBonos);
+		
+		lblBonos = new JLabel("");
+		lblBonos.setForeground(Color.WHITE);
+		lblBonos.setBounds(193, 0, 199, 36);
+		pIngBonos.add(lblBonos);
+		
+		pIngRentas = new JPanel();
+		pIngRentas.setBounds(541, 391, 392, 36);
+		pIngresosMain.add(pIngRentas);
+		pIngRentas.setLayout(null);
+		
+		lblNombreRentas = new JLabel("");
+		lblNombreRentas.setForeground(Color.WHITE);
+		lblNombreRentas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombreRentas.setBounds(0, 0, 183, 36);
+		pIngRentas.add(lblNombreRentas);
+		
+		lblRentas = new JLabel("");
+		lblRentas.setForeground(Color.WHITE);
+		lblRentas.setBounds(193, 0, 199, 36);
+		pIngRentas.add(lblRentas);
+		
+		pIngInversiones = new JPanel();
+		pIngInversiones.setBounds(541, 455, 392, 36);
+		pIngresosMain.add(pIngInversiones);
+		pIngInversiones.setLayout(null);
+		
+		lblNombreInversiones = new JLabel("");
+		lblNombreInversiones.setForeground(Color.WHITE);
+		lblNombreInversiones.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombreInversiones.setBounds(0, 0, 183, 36);
+		pIngInversiones.add(lblNombreInversiones);
+		
+		lblInversiones = new JLabel("");
+		lblInversiones.setForeground(Color.WHITE);
+		lblInversiones.setBounds(193, 0, 199, 36);
+		pIngInversiones.add(lblInversiones);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setBounds(541, 330, 46, 14);
+		pIngresosMain.add(lblNewLabel_3);
+		
+		pIngresos2 = new JPanel();
+		pIngresos2.setBackground(Color.WHITE);
+		ingresos.add(pIngresos2, "name_163382642808700");
+		pIngresos2.setLayout(null);
+		
+		lblEditar = new JLabel("INGRESOS");
+		lblEditar.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblEditar.setBounds(478, 44, 152, 52);
+		pIngresos2.add(lblEditar);
+		
+		lblIngresosEdita = new JLabel("Edita las caracteristicas de tu ingreso");
+		lblIngresosEdita.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblIngresosEdita.setBounds(401, 101, 303, 14);
+		pIngresos2.add(lblIngresosEdita);
+		
+		panel_19 = new JPanel();
+		panel_19.setBackground(new Color(0, 153, 255));
+		panel_19.setBounds(88, 168, 278, 445);
+		pIngresos2.add(panel_19);
+		panel_19.setLayout(null);
+		
+		lblNewLabel_4 = new JLabel("Edicion");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_4.setForeground(Color.WHITE);
+		lblNewLabel_4.setBounds(68, 126, 141, 45);
+		panel_19.add(lblNewLabel_4);
+		
+		lblDe = new JLabel("de Ingresos");
+		lblDe.setForeground(Color.WHITE);
+		lblDe.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblDe.setBounds(68, 176, 160, 31);
+		panel_19.add(lblDe);
+		
+		lblNewLabel_5 = new JLabel("Monto: ");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_5.setBounds(513, 244, 73, 31);
+		pIngresos2.add(lblNewLabel_5);
+		
+		tfIngresoMonto = new JTextField();
+		tfIngresoMonto.setBounds(637, 252, 185, 22);
+		pIngresos2.add(tfIngresoMonto);
+		tfIngresoMonto.setColumns(10);
+		
+		JLabel lblNewLabel_6 = new JLabel("Categoria: ");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_6.setBounds(487, 308, 99, 22);
+		pIngresos2.add(lblNewLabel_6);
+		
+		cbIngresoCat = new JComboBox<String>();
+		cbIngresoCat.addItem("Sueldos");
+		cbIngresoCat.addItem("Bonos");
+		cbIngresoCat.addItem("Reembolsos");
+		cbIngresoCat.addItem("Rentas");
+		cbIngresoCat.addItem("Subsidios");
+		cbIngresoCat.addItem("Inversiones");
+		cbIngresoCat.addItem("Otros");
+		cbIngresoCat.setBounds(639, 313, 183, 20);
+		pIngresos2.add(cbIngresoCat);
+		
+		JLabel lblNewLabel_7 = new JLabel("Repetir: ");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_7.setBounds(513, 369, 77, 22);
+		pIngresos2.add(lblNewLabel_7);
+		
+		cbIngresoRep = new JComboBox<String>();
+		cbIngresoRep.addItem("Nunca");
+		cbIngresoRep.addItem("Diario");
+		cbIngresoRep.addItem("Semanal");
+		cbIngresoRep.addItem("Mensual");
+		cbIngresoRep.addItem("Anual");
+		cbIngresoRep.setBounds(637, 373, 185, 22);
+		pIngresos2.add(cbIngresoRep);
+		
+		JLabel lblNewLabel_8 = new JLabel("Recordatorio: ");
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_8.setBounds(460, 420, 126, 31);
+		pIngresos2.add(lblNewLabel_8);
+		
+		cbIngresoRec = new JComboBox<String>();
+		cbIngresoRec.addItem("Nunca");
+		cbIngresoRec.addItem("El dia de vencimiento");
+		cbIngresoRec.addItem("Un dia antes de vencer");
+		cbIngresoRec.setBounds(632, 428, 190, 22);
+		pIngresos2.add(cbIngresoRec);
+		
+		btnIngresoRegresar = new JButton("Represar <--");
+		btnIngresoRegresar.setBackground(new Color(0, 250, 154));
+		btnIngresoRegresar.setBounds(88, 44, 117, 36);
+		btnIngresoRegresar.addActionListener(oyenteIngresos);
+		pIngresos2.add(btnIngresoRegresar);
+		
+		btnIngresoGuardar = new JButton("Guardar");
+		btnIngresoGuardar.addActionListener(oyenteIngresos);
+		btnIngresoGuardar.setBounds(715, 582, 107, 31);
+		btnIngresoGuardar.addActionListener(oyenteIngresos);
+		pIngresos2.add(btnIngresoGuardar);
 		
 		
 		gastos = new JPanel();
@@ -3065,7 +3323,7 @@ public class Main {
 				
 				fieldSaludTotal.setText(Integer.toString(fieldTotalEducacion));
 				panel.setBackground(new Color(51, 153, 255));
-				presMainLabel11.setText("Educación");
+				presMainLabel11.setText("EducaciÃ³n");
 				presMainLabel12.setText(Integer.toString(fieldTotalEducacion));
 				
 				presEducacion.setVisible(false);
@@ -3130,6 +3388,60 @@ public class Main {
 				presupuestoMain.setVisible(true);
 			}
 			
+			if(e.getSource() == btnAgregarIngreso) {
+				pIngresos2.setVisible(true);
+				pIngresosMain.setVisible(false);
+				
+			}
+			if(e.getSource() == btnIngresoRegresar) {
+				pIngresosMain.setVisible(true);
+				pIngresos2.setVisible(false);
+			}
+			
+			if(e.getSource() == btnIngresoGuardar) {
+				int opcion = cbIngresoCat.getSelectedIndex();
+				pIngresosMain.setVisible(true);
+				pIngresos2.setVisible(false);
+				switch (opcion) {
+					case 0:
+						pIngSueldos.setBackground(new Color(51, 153, 255));
+						lblNombreSueldos.setText("Sueldos");
+						lblSueldos.setText(tfIngresoMonto.getText());
+						break;
+					case 1:
+						pIngBonos.setBackground(new Color(51, 153, 255));
+						lblNombreBonos.setText("Bonos");
+						lblBonos.setText(tfIngresoMonto.getText());
+						break;
+					case 2:
+						pIngReembolsos.setBackground(new Color(51, 153, 255));
+						lblNombreReembolsos.setText("Reembolsos");
+						lblReembolsos.setText(tfIngresoMonto.getText());
+						break;
+					case 3:
+						pIngRentas.setBackground(new Color(51, 153, 255));
+						lblNombreRentas.setText("Rentas");
+						lblRentas.setText(tfIngresoMonto.getText());
+						break;
+					case 4:
+						pIngSubsidios.setBackground(new Color(51, 153, 255));
+						lblNombreSubsidios.setText("Subsidios");
+						lblSubsidios.setText(tfIngresoMonto.getText());
+						break;
+					case 5:
+						pIngInversiones.setBackground(new Color(51, 153, 255));
+						lblNombreInversiones.setText("Inversiones");
+						lblInversiones.setText(tfIngresoMonto.getText());
+						break;
+					case 6:
+						pIngOtros.setBackground(new Color(51, 153, 255));
+						lblNombreOtros.setText("Otros");
+						lblOtros1.setText(tfIngresoMonto.getText());
+						break;
+				}
+			}
+			
+			
 			presupuestoTotal = pres.totalPresupuesto(fieldTotalHogar, fieldTotalAuto, fieldTotalAlimentos, fieldTotalEntretenimiento, fieldTotalSalud, fieldTotalEducacion,
 					fieldTotalFinanzas, fieldTotalRopa, fieldTotalRegalos, fieldTotalViajes);
 			
@@ -3154,16 +3466,10 @@ public class Main {
 			res11.setText(fieldViajesTotal.getText());
 			
 		}
+			
+		
 	}
 }
-
-
-
-
-
-
-
-
 
 
 
