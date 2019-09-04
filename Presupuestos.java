@@ -1,4 +1,8 @@
-
+/*
+ * @author Javier Barrios 
+ * @doc Interfaz Resumne
+ * 
+ */
 public class Presupuestos {
 	
 	public int totalPresupuesto(int uno, int dos, int tres, int cuatro, int cinco, int seis, int siete, int ocho, int nueve, int diez) {

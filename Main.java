@@ -26,6 +26,7 @@ import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import javax.swing.Icon;
 import javax.swing.JSeparator;
+
 import javax.swing.JComboBox;
 
 public class Main {
@@ -123,6 +124,7 @@ public class Main {
 	resumen9, resumen14, resumen13;
 
 	private JLabel resumenIngresos, resumenGastos, lblTotalIngresos, lblGastosTotal, res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11;
+
 	private JPanel pIngresosMain;
 	private JPanel pIngresos2;
 	
