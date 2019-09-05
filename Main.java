@@ -131,7 +131,7 @@ public class Main {
 	private JPanel pIngSueldos, pIngBonos, pIngReembolsos, pIngRentas, pIngSubsidios, pIngInversiones, pIngOtros;
 	private JLabel lblNombreSueldos, lblNombreBonos, lblNombreReembolsos, lblNombreRentas, lblNombreSubsidios,
 				   lblNombreInversiones, lblNombreOtros;
-	private JLabel lblSueldos, lblBonos, lblReembolsos, lblRentas, lblSubsidios, lblInversiones, lblOtros1;
+	private JLabel lblIngresosTotal, lblSueldos, lblBonos, lblReembolsos, lblRentas, lblSubsidios, lblInversiones, lblOtros1;
 
 	private JLabel lblEditar;
 	private JLabel lblIngresosEdita;
@@ -2839,10 +2839,10 @@ public class Main {
 		lblIngresoTitulo.setBounds(452, 42, 130, 42);
 		pIngresosMain.add(lblIngresoTitulo);
 		
-		JLabel lblNewLabel = new JLabel("8000");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblNewLabel.setBounds(452, 115, 130, 42);
-		pIngresosMain.add(lblNewLabel);
+		lblIngresosTotal = new JLabel("7000");
+		lblIngresosTotal.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblIngresosTotal.setBounds(452, 115, 130, 42);
+		pIngresosMain.add(lblIngresosTotal);
 		
 		JLabel lblNewLabel_2 = new JLabel("Total ingresos:     Q");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -2851,8 +2851,11 @@ public class Main {
 		
 		oyenteIngresos = new MiListener();
 		btnAgregarIngreso = new JButton("+");
+		btnAgregarIngreso.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnAgregarIngreso.setBackground(new Color(51, 153, 255));
 		btnAgregarIngreso.addActionListener(oyenteIngresos);
 		btnAgregarIngreso.setBounds(452, 199, 130, 65);
+		btnAgregarIngreso.setBorder(null);
 		pIngresosMain.add(btnAgregarIngreso);
 		
 		JLabel lblAgregaringresoo = new JLabel("Agregar un nuevo ingreso");
@@ -2870,7 +2873,7 @@ public class Main {
 		lblNombreSueldos.setBounds(0, 0, 187, 36);
 		pIngSueldos.add(lblNombreSueldos);
 		
-		lblSueldos = new JLabel("");
+		lblSueldos = new JLabel("0");
 		lblSueldos.setForeground(Color.WHITE);
 		lblSueldos.setBounds(197, 0, 195, 36);
 		pIngSueldos.add(lblSueldos);
@@ -2886,7 +2889,7 @@ public class Main {
 		lblNombreReembolsos.setBounds(0, 0, 187, 36);
 		pIngReembolsos.add(lblNombreReembolsos);
 		
-		lblReembolsos = new JLabel("");
+		lblReembolsos = new JLabel("0");
 		lblReembolsos.setForeground(Color.WHITE);
 		lblReembolsos.setBounds(197, 0, 195, 36);
 		pIngReembolsos.add(lblReembolsos);
@@ -2902,7 +2905,7 @@ public class Main {
 		lblNombreSubsidios.setBounds(0, 0, 183, 36);
 		pIngSubsidios.add(lblNombreSubsidios);
 		
-		lblSubsidios = new JLabel("");
+		lblSubsidios = new JLabel("0");
 		lblSubsidios.setForeground(Color.WHITE);
 		lblSubsidios.setBounds(193, 0, 199, 36);
 		pIngSubsidios.add(lblSubsidios);
@@ -2918,7 +2921,7 @@ public class Main {
 		lblNombreOtros.setBounds(0, 0, 183, 36);
 		pIngOtros.add(lblNombreOtros);
 		
-		lblOtros1 = new JLabel("");
+		lblOtros1 = new JLabel("0");
 		lblOtros1.setForeground(Color.WHITE);
 		lblOtros1.setBounds(193, 0, 199, 36);
 		pIngOtros.add(lblOtros1);
@@ -2934,7 +2937,7 @@ public class Main {
 		lblNombreBonos.setBounds(0, 0, 183, 36);
 		pIngBonos.add(lblNombreBonos);
 		
-		lblBonos = new JLabel("");
+		lblBonos = new JLabel("0");
 		lblBonos.setForeground(Color.WHITE);
 		lblBonos.setBounds(193, 0, 199, 36);
 		pIngBonos.add(lblBonos);
@@ -2950,7 +2953,7 @@ public class Main {
 		lblNombreRentas.setBounds(0, 0, 183, 36);
 		pIngRentas.add(lblNombreRentas);
 		
-		lblRentas = new JLabel("");
+		lblRentas = new JLabel("0");
 		lblRentas.setForeground(Color.WHITE);
 		lblRentas.setBounds(193, 0, 199, 36);
 		pIngRentas.add(lblRentas);
@@ -2966,7 +2969,7 @@ public class Main {
 		lblNombreInversiones.setBounds(0, 0, 183, 36);
 		pIngInversiones.add(lblNombreInversiones);
 		
-		lblInversiones = new JLabel("");
+		lblInversiones = new JLabel("0");
 		lblInversiones.setForeground(Color.WHITE);
 		lblInversiones.setBounds(193, 0, 199, 36);
 		pIngInversiones.add(lblInversiones);
@@ -3060,13 +3063,18 @@ public class Main {
 		cbIngresoRec.setBounds(632, 428, 190, 22);
 		pIngresos2.add(cbIngresoRec);
 		
-		btnIngresoRegresar = new JButton("Represar <--");
-		btnIngresoRegresar.setBackground(new Color(0, 250, 154));
+		btnIngresoRegresar = new JButton("Regresar");
+		btnIngresoRegresar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnIngresoRegresar.setForeground(Color.WHITE);
+		btnIngresoRegresar.setBackground(new Color(0, 204, 153));
 		btnIngresoRegresar.setBounds(88, 44, 117, 36);
 		btnIngresoRegresar.addActionListener(oyenteIngresos);
 		pIngresos2.add(btnIngresoRegresar);
 		
 		btnIngresoGuardar = new JButton("Guardar");
+		btnIngresoGuardar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnIngresoGuardar.setBackground(new Color(0, 204, 153));
+		btnIngresoGuardar.setForeground(Color.WHITE);
 		btnIngresoGuardar.addActionListener(oyenteIngresos);
 		btnIngresoGuardar.setBounds(715, 582, 107, 31);
 		btnIngresoGuardar.addActionListener(oyenteIngresos);
@@ -3323,7 +3331,7 @@ public class Main {
 				
 				fieldSaludTotal.setText(Integer.toString(fieldTotalEducacion));
 				panel.setBackground(new Color(51, 153, 255));
-				presMainLabel11.setText("Educación");
+				presMainLabel11.setText("EducaciÃ³n");
 				presMainLabel12.setText(Integer.toString(fieldTotalEducacion));
 				
 				presEducacion.setVisible(false);
@@ -3402,6 +3410,7 @@ public class Main {
 				int opcion = cbIngresoCat.getSelectedIndex();
 				pIngresosMain.setVisible(true);
 				pIngresos2.setVisible(false);
+				
 				switch (opcion) {
 					case 0:
 						pIngSueldos.setBackground(new Color(51, 153, 255));
@@ -3439,6 +3448,20 @@ public class Main {
 						lblOtros1.setText(tfIngresoMonto.getText());
 						break;
 				}
+						
+				int cantIng1 = Integer.parseInt(lblSueldos.getText());
+				int cantIng2 = Integer.parseInt(lblBonos.getText());
+				int cantIng3 = Integer.parseInt(lblReembolsos.getText());
+				int cantIng4 = Integer.parseInt(lblRentas.getText());
+				int cantIng5 = Integer.parseInt(lblSubsidios.getText());
+				int cantIng6 = Integer.parseInt(lblInversiones.getText());
+				int cantIng7 = Integer.parseInt(lblOtros1.getText());
+						
+				int totalIngresos = pres.totalPresupuesto(cantIng1, cantIng2 , cantIng3, cantIng4, cantIng5, cantIng6, cantIng7, 0, 0, 0);
+				lblIngresosTotal.setText(""+totalIngresos);
+				resumenIngresos.setText(""+totalIngresos);
+				lblQ_1.setText("Q "+totalIngresos);
+				
 			}
 			
 			
@@ -3470,27 +3493,3 @@ public class Main {
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
