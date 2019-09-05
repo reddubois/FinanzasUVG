@@ -88,8 +88,8 @@ public class Main {
 	
 	private JPanel panel, panel_10, panel_11, panel_12, panel_13, panel_14;
 	
-	private JLabel label_4, label_5, label_38, lblPresupuestoTotal_1, label_6, label_7, lblNewLabel_1, lblSeleccioneUnaCategoria, lblDespensa, lblRestaurante,
-	lblOtros, lblSubcategoras, label_8, label_3, lblGastos, lblTransportePublico, lblGasolina, lblUbertaxi, label_14, lblHogar;
+	private JLabel label_4, presIngresos, presTotalIngresos, lblPresupuestoTotal_1, label_6, label_7, lblNewLabel_1, lblSeleccioneUnaCategoria, lblDespensa, lblRestaurante,
+	lblOtros, lblSubcategoras, label_8, label_3, lblTransportePublico, lblGasolina, lblUbertaxi, label_14, lblHogar;
 	
 	private JProgressBar progressBar;
 	private JButton btnCrearPres;
@@ -115,7 +115,8 @@ public class Main {
 	private int presupuestoTotal, fieldTotalHogar, fieldTotalAuto, fieldTotalAlimentos, fieldTotalEntretenimiento, fieldTotalSalud, fieldTotalEducacion, fieldTotalFinanzas,
 				fieldTotalRopa, fieldTotalRegalos, fieldTotalViajes;
 
-	private int ingresosTotal = 7000;
+
+	private int ingresosTotal = 0;
 
 	private JLabel picLabel, lblUsername, lblIngresos, lblGastos_1, lblQ_1, lblQ_2, lblQ, lblUp, lblDown;
 	private BufferedImage myPicture = null, imageUp = null, imageDown = null;
@@ -143,6 +144,15 @@ public class Main {
 	private JComboBox<String> cbIngresoRep, cbIngresoCat, cbIngresoRec;
 	private MiListener oyenteIngresos;
 	private JButton btnIngresoRegresar, btnIngresoGuardar, btnAgregarIngreso;
+	private JPanel gastosMain;
+	private JPanel gastar;
+	private JTextField textField;
+
+	private JButton btnNuevoGasto;
+
+	private JButton btnGuardarGasto;
+
+	private JComboBox comboBox;
 	
 	
 	
@@ -262,12 +272,12 @@ public class Main {
 		lblIngresos.setBounds(50, 162, 60, 15);
 		sidebar.add(lblIngresos);
 		
-		lblQ_1 = new JLabel("Q 7,000");
+		lblQ_1 = new JLabel("Q 00");
 		lblQ_1.setFont(new Font("Segoe UI Black", Font.BOLD, 13));
 		lblQ_1.setBounds(50, 181, 60, 15);
 		sidebar.add(lblQ_1);
 		
-		lblQ_2 = new JLabel("Q 2,340");
+		lblQ_2 = new JLabel("Q 00");
 		lblQ_2.setFont(new Font("Segoe UI Black", Font.BOLD, 13));
 		lblQ_2.setBounds(165, 181, 60, 15);
 		sidebar.add(lblQ_2);
@@ -359,7 +369,7 @@ public class Main {
 		label_41.setBounds(0, 22, 300, 26);
 		resumen2.add(label_41);
 		
-		resumenIngresos = new JLabel("0.0");
+		resumenIngresos = new JLabel("00");
 		resumenIngresos.setHorizontalAlignment(SwingConstants.CENTER);
 		resumenIngresos.setForeground(Color.WHITE);
 		resumenIngresos.setFont(new Font("Verdana", Font.BOLD, 17));
@@ -379,7 +389,7 @@ public class Main {
 		label_43.setBounds(0, 22, 300, 26);
 		resumen3.add(label_43);
 		
-		resumenGastos = new JLabel("0.0");
+		resumenGastos = new JLabel("00");
 		resumenGastos.setHorizontalAlignment(SwingConstants.CENTER);
 		resumenGastos.setForeground(Color.WHITE);
 		resumenGastos.setFont(new Font("Verdana", Font.BOLD, 17));
@@ -885,16 +895,15 @@ public class Main {
 		lblQ.setBounds(281, 143, 19, 27);
 		presupuestoMain.add(lblQ);
 		
-		label_5 = new JLabel("Q");
-		label_5.setFont(new Font("Verdana", Font.PLAIN, 17));
-		label_5.setBounds(817, 143, 19, 27);
-		presupuestoMain.add(label_5);
+		presIngresos = new JLabel("Q");
+		presIngresos.setFont(new Font("Verdana", Font.PLAIN, 17));
+		presIngresos.setBounds(817, 143, 19, 27);
+		presupuestoMain.add(presIngresos);
 		
-		label_38 = new JLabel("");
-		label_38.setText(Integer.toString(ingresosTotal));
-		label_38.setFont(new Font("Verdana", Font.PLAIN, 17));
-		label_38.setBounds(836, 143, 111, 27);
-		presupuestoMain.add(label_38);
+		presTotalIngresos = new JLabel("");
+		presTotalIngresos.setFont(new Font("Verdana", Font.PLAIN, 17));
+		presTotalIngresos.setBounds(836, 143, 111, 27);
+		presupuestoMain.add(presTotalIngresos);
 		
 		selecPresCateg = new JPanel();
 		selecPresCateg.setBackground(new Color(255, 255, 255));
@@ -2839,7 +2848,7 @@ public class Main {
 		lblIngresoTitulo.setBounds(452, 42, 130, 42);
 		pIngresosMain.add(lblIngresoTitulo);
 		
-		lblIngresosTotal = new JLabel("7000");
+		lblIngresosTotal = new JLabel("00");
 		lblIngresosTotal.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblIngresosTotal.setBounds(452, 115, 130, 42);
 		pIngresosMain.add(lblIngresosTotal);
@@ -3084,12 +3093,327 @@ public class Main {
 		gastos = new JPanel();
 		gastos.setBackground(Color.WHITE);
 		content.add(gastos, "name_18782269186194");
-		gastos.setLayout(null);
+		gastos.setLayout(new CardLayout(0, 0));
 		
-		lblGastos = new JLabel("GASTOS");
-		lblGastos.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblGastos.setBounds(88, 171, 349, 177);
-		gastos.add(lblGastos);
+		gastosMain = new JPanel();
+		gastosMain.setBackground(Color.WHITE);
+		gastos.add(gastosMain, "name_473969418326918");
+		gastosMain.setLayout(null);
+		
+		JLabel label_5 = new JLabel("GASTOS");
+		label_5.setHorizontalAlignment(SwingConstants.CENTER);
+		label_5.setFont(new Font("Verdana", Font.PLAIN, 20));
+		label_5.setBounds(413, 68, 170, 64);
+		gastosMain.add(label_5);
+		
+		btnNuevoGasto = new JButton("+");
+		MiListener oyentebtnNuevoGasto = new MiListener();
+		btnNuevoGasto.addActionListener(oyentebtnNuevoGasto);
+		btnNuevoGasto.setForeground(Color.WHITE);
+		btnNuevoGasto.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		btnNuevoGasto.setBorder(null);
+		btnNuevoGasto.setBackground(new Color(51, 153, 255));
+		btnNuevoGasto.setBounds(440, 254, 133, 50);
+		gastosMain.add(btnNuevoGasto);
+		
+		JLabel label_38 = new JLabel("Nuevo gasto");
+		label_38.setHorizontalAlignment(SwingConstants.CENTER);
+		label_38.setFont(new Font("Verdana", Font.PLAIN, 14));
+		label_38.setBounds(440, 304, 133, 27);
+		gastosMain.add(label_38);
+		
+		JPanel panel_20 = new JPanel();
+		panel_20.setLayout(null);
+		panel_20.setBackground(SystemColor.menu);
+		panel_20.setBounds(103, 407, 365, 33);
+		gastosMain.add(panel_20);
+		
+		JLabel label_42 = new JLabel("");
+		label_42.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_42.setForeground(Color.WHITE);
+		label_42.setFont(new Font("Verdana", Font.BOLD, 13));
+		label_42.setBackground(new Color(0, 153, 255));
+		label_42.setBounds(0, 0, 181, 40);
+		panel_20.add(label_42);
+		
+		JLabel label_45 = new JLabel("");
+		label_45.setHorizontalAlignment(SwingConstants.CENTER);
+		label_45.setForeground(Color.WHITE);
+		label_45.setFont(new Font("Verdana", Font.BOLD, 15));
+		label_45.setBackground(new Color(0, 153, 255));
+		label_45.setBounds(184, 0, 181, 40);
+		panel_20.add(label_45);
+		
+		JPanel panel_21 = new JPanel();
+		panel_21.setLayout(null);
+		panel_21.setBackground(SystemColor.menu);
+		panel_21.setBounds(538, 407, 365, 33);
+		gastosMain.add(panel_21);
+		
+		JLabel label_48 = new JLabel("");
+		label_48.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_48.setForeground(Color.WHITE);
+		label_48.setFont(new Font("Verdana", Font.BOLD, 13));
+		label_48.setBackground(new Color(0, 153, 255));
+		label_48.setBounds(0, 0, 181, 40);
+		panel_21.add(label_48);
+		
+		JLabel label_50 = new JLabel("");
+		label_50.setHorizontalAlignment(SwingConstants.CENTER);
+		label_50.setForeground(Color.WHITE);
+		label_50.setFont(new Font("Verdana", Font.BOLD, 15));
+		label_50.setBackground(new Color(0, 153, 255));
+		label_50.setBounds(184, 0, 181, 40);
+		panel_21.add(label_50);
+		
+		JPanel panel_22 = new JPanel();
+		panel_22.setLayout(null);
+		panel_22.setBackground(SystemColor.menu);
+		panel_22.setBounds(103, 451, 365, 33);
+		gastosMain.add(panel_22);
+		
+		JLabel label_52 = new JLabel("");
+		label_52.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_52.setForeground(Color.WHITE);
+		label_52.setFont(new Font("Verdana", Font.BOLD, 13));
+		label_52.setBackground(new Color(0, 153, 255));
+		label_52.setBounds(0, 0, 181, 40);
+		panel_22.add(label_52);
+		
+		JLabel label_54 = new JLabel("");
+		label_54.setHorizontalAlignment(SwingConstants.CENTER);
+		label_54.setForeground(Color.WHITE);
+		label_54.setFont(new Font("Verdana", Font.BOLD, 15));
+		label_54.setBackground(new Color(0, 153, 255));
+		label_54.setBounds(184, 0, 181, 40);
+		panel_22.add(label_54);
+		
+		JPanel panel_23 = new JPanel();
+		panel_23.setLayout(null);
+		panel_23.setBackground(SystemColor.menu);
+		panel_23.setBounds(103, 495, 365, 33);
+		gastosMain.add(panel_23);
+		
+		JLabel label_56 = new JLabel("");
+		label_56.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_56.setForeground(Color.WHITE);
+		label_56.setFont(new Font("Verdana", Font.BOLD, 13));
+		label_56.setBackground(new Color(0, 153, 255));
+		label_56.setBounds(0, 0, 181, 40);
+		panel_23.add(label_56);
+		
+		JLabel label_58 = new JLabel("");
+		label_58.setHorizontalAlignment(SwingConstants.CENTER);
+		label_58.setForeground(Color.WHITE);
+		label_58.setFont(new Font("Verdana", Font.BOLD, 15));
+		label_58.setBackground(new Color(0, 153, 255));
+		label_58.setBounds(184, 0, 181, 40);
+		panel_23.add(label_58);
+		
+		JPanel panel_83 = new JPanel();
+		panel_83.setLayout(null);
+		panel_83.setBackground(SystemColor.menu);
+		panel_83.setBounds(103, 539, 365, 33);
+		gastosMain.add(panel_83);
+		
+		JLabel label_60 = new JLabel("");
+		label_60.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_60.setForeground(Color.WHITE);
+		label_60.setFont(new Font("Verdana", Font.BOLD, 13));
+		label_60.setBackground(new Color(0, 153, 255));
+		label_60.setBounds(0, 0, 181, 40);
+		panel_83.add(label_60);
+		
+		JLabel label_62 = new JLabel("");
+		label_62.setHorizontalAlignment(SwingConstants.CENTER);
+		label_62.setForeground(Color.WHITE);
+		label_62.setFont(new Font("Verdana", Font.BOLD, 15));
+		label_62.setBackground(new Color(0, 153, 255));
+		label_62.setBounds(184, 0, 181, 40);
+		panel_83.add(label_62);
+		
+		JPanel panel_84 = new JPanel();
+		panel_84.setLayout(null);
+		panel_84.setBackground(SystemColor.menu);
+		panel_84.setBounds(538, 451, 365, 33);
+		gastosMain.add(panel_84);
+		
+		JLabel label_64 = new JLabel("");
+		label_64.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_64.setForeground(Color.WHITE);
+		label_64.setFont(new Font("Verdana", Font.BOLD, 13));
+		label_64.setBackground(new Color(0, 153, 255));
+		label_64.setBounds(0, 0, 181, 40);
+		panel_84.add(label_64);
+		
+		JLabel label_66 = new JLabel("");
+		label_66.setHorizontalAlignment(SwingConstants.CENTER);
+		label_66.setForeground(Color.WHITE);
+		label_66.setFont(new Font("Verdana", Font.BOLD, 15));
+		label_66.setBackground(new Color(0, 153, 255));
+		label_66.setBounds(184, 0, 181, 40);
+		panel_84.add(label_66);
+		
+		JPanel panel_85 = new JPanel();
+		panel_85.setLayout(null);
+		panel_85.setBackground(SystemColor.menu);
+		panel_85.setBounds(538, 495, 365, 33);
+		gastosMain.add(panel_85);
+		
+		JLabel label_68 = new JLabel("");
+		label_68.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_68.setForeground(Color.WHITE);
+		label_68.setFont(new Font("Verdana", Font.BOLD, 13));
+		label_68.setBackground(new Color(0, 153, 255));
+		label_68.setBounds(0, 0, 181, 40);
+		panel_85.add(label_68);
+		
+		JLabel label_69 = new JLabel("");
+		label_69.setHorizontalAlignment(SwingConstants.CENTER);
+		label_69.setForeground(Color.WHITE);
+		label_69.setFont(new Font("Verdana", Font.BOLD, 15));
+		label_69.setBackground(new Color(0, 153, 255));
+		label_69.setBounds(184, 0, 181, 40);
+		panel_85.add(label_69);
+		
+		JPanel panel_86 = new JPanel();
+		panel_86.setLayout(null);
+		panel_86.setBackground(SystemColor.menu);
+		panel_86.setBounds(538, 539, 365, 33);
+		gastosMain.add(panel_86);
+		
+		JLabel label_70 = new JLabel("");
+		label_70.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_70.setForeground(Color.WHITE);
+		label_70.setFont(new Font("Verdana", Font.BOLD, 13));
+		label_70.setBackground(new Color(0, 153, 255));
+		label_70.setBounds(0, 0, 181, 40);
+		panel_86.add(label_70);
+		
+		JLabel label_71 = new JLabel("");
+		label_71.setHorizontalAlignment(SwingConstants.CENTER);
+		label_71.setForeground(Color.WHITE);
+		label_71.setFont(new Font("Verdana", Font.BOLD, 15));
+		label_71.setBackground(new Color(0, 153, 255));
+		label_71.setBounds(184, 0, 181, 40);
+		panel_86.add(label_71);
+		
+		JLabel label_72 = new JLabel("Total gastos");
+		label_72.setHorizontalAlignment(SwingConstants.CENTER);
+		label_72.setFont(new Font("Verdana", Font.PLAIN, 15));
+		label_72.setBounds(280, 152, 133, 27);
+		gastosMain.add(label_72);
+		
+		JLabel label_73 = new JLabel("0");
+		label_73.setHorizontalAlignment(SwingConstants.CENTER);
+		label_73.setFont(new Font("Verdana", Font.PLAIN, 20));
+		label_73.setBounds(413, 168, 170, 64);
+		gastosMain.add(label_73);
+		
+		JPanel panel_87 = new JPanel();
+		panel_87.setLayout(null);
+		panel_87.setBackground(SystemColor.menu);
+		panel_87.setBounds(103, 583, 365, 33);
+		gastosMain.add(panel_87);
+		
+		JLabel label_74 = new JLabel("");
+		label_74.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_74.setForeground(Color.WHITE);
+		label_74.setFont(new Font("Verdana", Font.BOLD, 13));
+		label_74.setBackground(new Color(0, 153, 255));
+		label_74.setBounds(0, 0, 181, 40);
+		panel_87.add(label_74);
+		
+		JLabel label_75 = new JLabel("");
+		label_75.setHorizontalAlignment(SwingConstants.CENTER);
+		label_75.setForeground(Color.WHITE);
+		label_75.setFont(new Font("Verdana", Font.BOLD, 15));
+		label_75.setBackground(new Color(0, 153, 255));
+		label_75.setBounds(184, 0, 181, 40);
+		panel_87.add(label_75);
+		
+		JPanel panel_88 = new JPanel();
+		panel_88.setLayout(null);
+		panel_88.setBackground(SystemColor.menu);
+		panel_88.setBounds(538, 583, 365, 33);
+		gastosMain.add(panel_88);
+		
+		JLabel label_76 = new JLabel("");
+		label_76.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_76.setForeground(Color.WHITE);
+		label_76.setFont(new Font("Verdana", Font.BOLD, 13));
+		label_76.setBackground(new Color(0, 153, 255));
+		label_76.setBounds(0, 0, 181, 40);
+		panel_88.add(label_76);
+		
+		JLabel label_77 = new JLabel("");
+		label_77.setHorizontalAlignment(SwingConstants.CENTER);
+		label_77.setForeground(Color.WHITE);
+		label_77.setFont(new Font("Verdana", Font.BOLD, 15));
+		label_77.setBackground(new Color(0, 153, 255));
+		label_77.setBounds(184, 0, 181, 40);
+		panel_88.add(label_77);
+		
+		gastar = new JPanel();
+		gastar.setBackground(Color.WHITE);
+		gastos.add(gastar, "name_473974705430124");
+		gastar.setLayout(null);
+		
+		JLabel label_78 = new JLabel("GASTOS");
+		label_78.setHorizontalAlignment(SwingConstants.CENTER);
+		label_78.setFont(new Font("Verdana", Font.PLAIN, 20));
+		label_78.setBounds(413, 115, 170, 64);
+		gastar.add(label_78);
+		
+		textField = new JTextField();
+		textField.setText("0");
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setFont(new Font("Verdana", Font.BOLD, 14));
+		textField.setColumns(10);
+		textField.setBounds(413, 233, 170, 35);
+		gastar.add(textField);
+		
+		comboBox = new JComboBox();
+		comboBox.addItem("Sueldos");
+		comboBox.addItem("Bonos");
+		comboBox.addItem("Reembolsos");
+		comboBox.addItem("Rentas");
+		comboBox.addItem("Subsidios");
+		comboBox.addItem("Inversiones");
+		comboBox.addItem("Otros");
+		comboBox.setForeground(new Color(0, 0, 51));
+		comboBox.setFont(new Font("Verdana", Font.PLAIN, 12));
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setBounds(413, 318, 170, 35);
+		gastar.add(comboBox);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setForeground(new Color(0, 0, 51));
+		comboBox_1.setFont(new Font("Verdana", Font.PLAIN, 12));
+		comboBox_1.setBackground(Color.WHITE);
+		comboBox_1.setBounds(413, 377, 170, 35);
+		gastar.add(comboBox_1);
+		
+		JLabel label_79 = new JLabel("Categor\u00EDa");
+		label_79.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_79.setFont(new Font("Verdana", Font.PLAIN, 14));
+		label_79.setBounds(309, 316, 94, 35);
+		gastar.add(label_79);
+		
+		JLabel label_80 = new JLabel("Repetir");
+		label_80.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_80.setFont(new Font("Verdana", Font.PLAIN, 14));
+		label_80.setBounds(309, 377, 94, 35);
+		gastar.add(label_80);
+		
+		btnGuardarGasto = new JButton("Guardar");
+		MiListener oyentebtnGuardarGasto = new MiListener();
+		btnGuardarGasto.addActionListener(oyentebtnGuardarGasto);
+		btnGuardarGasto.setForeground(Color.WHITE);
+		btnGuardarGasto.setFont(new Font("Verdana", Font.BOLD, 13));
+		btnGuardarGasto.setBackground(new Color(0, 204, 153));
+		btnGuardarGasto.setBounds(413, 451, 170, 35);
+		gastar.add(btnGuardarGasto);
 
 	}
 	
@@ -3464,15 +3788,33 @@ public class Main {
 				
 			}
 			
+				
+			// PRESUPUESTOS
 			
 			presupuestoTotal = pres.totalPresupuesto(fieldTotalHogar, fieldTotalAuto, fieldTotalAlimentos, fieldTotalEntretenimiento, fieldTotalSalud, fieldTotalEducacion,
 					fieldTotalFinanzas, fieldTotalRopa, fieldTotalRegalos, fieldTotalViajes);
+			
+			String totIngresos =  lblIngresosTotal.getText();
+			presTotalIngresos.setText(totIngresos);
+			ingresosTotal = Integer.parseInt(totIngresos);
+			
 			
 			progressBar.setValue(pres.porcentajePresupuesto(presupuestoTotal, ingresosTotal));
 			
 			
 			lblPresupuestoTotal.setText(Integer.toString(presupuestoTotal));
 			
+			
+			// GASTOS 
+			if(e.getSource() == btnNuevoGasto) {
+				gastosMain.setVisible(false);
+				gastar.setVisible(true);
+			}
+			if(e.getSource() == btnGuardarGasto) {
+				gastar.setVisible(false);
+				gastosMain.setVisible(true);
+			}
+
 			
 			// RESUMEN 
 			
